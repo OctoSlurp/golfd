@@ -1,6 +1,6 @@
 * Golfd
 
-  A tiny yet simple code-golf language, written in Clojure.
+  A tiny and simple code-golf language, written in Clojure.
 
 ** Syntax
 
