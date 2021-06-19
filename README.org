@@ -16,13 +16,13 @@
    #+END_SRC
    
    Explanation:
-   So, let's start with the ~'Hello, world!'~ part. As I mentioned
-   before, anything in single quotes is pushed to the stack. The stack
-   is just an array, so the stack now looks like ~["Hello,
-   world!"]~. The next part here is ~p~. ~p~ is the print operator. It
-   takes the last item on the stack, prints it and removes it from the
-   stack. So we get ~Hello, world!~ printed after the ~p~ operator and
-   stack is now empty (~[]~).
+
+   So, let's start with the ~Hello, world!~ part. As I mentioned before,
+   anything in single quotes is pushed to the stack. The stack is just an
+   array, so the stack now looks like ~["Hello, world!"]~. The next part here
+   is ~p~. ~p~ is the print operator. It takes the last item on the stack,
+   prints it and removes it from the stack. So we get ~Hello, world!~ printed
+   after the ~p~ operator and stack is now empty (~[]~).
 
    One thing to note about the language is that each line has its own
    stack. This means if you want to clear the stack you can just move
