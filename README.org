@@ -1,0 +1,39 @@
+* Golfd
+
+  A tiny yet simple code-golf language, written in Clojure.
+
+** Syntax
+
+   Anything inside single quotes are pushed to a stack. Every
+   character not inside single quotes is an operator. Operators are
+   basically functions for Golfd. They take the entire stack as
+   argument, and modify the stack as much as they want. Here's how a
+   hello world program is written, and how it works:
+
+   The code:
+   #+BEGIN_SRC text
+     'Hello, world!'p
+   #+END_SRC
+   
+   Explanation:
+   So, let's start with the ~'Hello, world!'~ part. As I mentioned
+   before, anything in single quotes is pushed to the stack. The stack
+   is just an array, so the stack now looks like ~["Hello,
+   world!"]~. The next part here is ~p~. ~p~ is the print operator. It
+   takes the last item on the stack, prints it and removes it from the
+   stack. So we get ~Hello, world!~ printed after the ~p~ operator and
+   stack is now empty (~[]~).
+
+   One thing to note about the language is that each line has its own
+   stack. This means if you want to clear the stack you can just move
+   to a new line.
+
+** Operators
+
+   Here's a list of operators, until there is a proper wiki page.
+
+   | Operator | Description                                  |
+   | +        | Adds the last 2 numbers in stack             |
+   | p        | Prints the last item in stack                |
+   | P        | Prints all items in stack, left to right     |
+   | .        | Takes input from user and pushes it to stack |
