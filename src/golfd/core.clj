@@ -1,7 +1,8 @@
 (ns golfd.core
   (:gen-class)
   (:require [clojure.string :as str])
-  (:require [golfd.operators :as ops]))
+  (:require [golfd.operators :as ops])
+  (:require [golfd.helpers :as helpers]))
 
 (defn tokenize [expr]
   (->> (str/split expr #"'")
@@ -9,17 +10,31 @@
        (filter (partial not= nil))
        (apply concat)))
 
-(defn evaluate [expr]
-  (loop [[t & ts] (tokenize expr)
+(defn tokenize [expr]
+  (loop [[chr & rest] expr
+         tokens []]
+    (if chr
+      (case chr
+        \' (let [[t rest] (helpers/read-until rest \')]
+             (recur rest (conj tokens [:group t])))
+        \[ (let [[t rest] (helpers/read-until rest \])]
+             (recur rest (conj tokens [:loop (tokenize t)])))
+        (recur rest (conj tokens [:operator chr])))
+      tokens)))
+
+(defn evaluate [tokens]
+  (loop [[t & ts] tokens
          stack []]
     (when t
-      (if (char? t)
-        (recur ts ((ops/operators t) stack))
-        (recur ts (conj stack t))))))
+      (case (first t)
+        :operator (recur ts ((ops/operators (second t)) stack))
+        :group (recur ts (conj stack (second t)))
+        :loop (recur ts stack)))))
 
 (defn -main [& args]
   (if (first args)
-    (doall (map evaluate (str/split-lines (slurp (first args)))))
+    (doall (map evaluate (tokenize
+                          (str/split-lines (slurp (first args))))))
     (while true
       (print "golfd> ")
       (flush)
