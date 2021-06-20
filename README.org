@@ -32,8 +32,20 @@
 
    Here's a list of operators, until there is a proper wiki page.
 
-   | Operator | Description                                  |
-   | +        | Adds the last 2 numbers in stack             |
-   | p        | Prints the last item in stack                |
-   | P        | Prints all items in stack, left to right     |
-   | .        | Takes input from user and pushes it to stack |
+   | Operator | Description                                                                      |
+   | +        | Adds last 2 items in stack                                                       |
+   | p        | Prints last item in stack                                                        |
+   | P        | Prints all items in stack                                                        |
+   | Ṗ        | Prints all items in stack joined by spaces                                       |
+   | .        | Takes user input                                                                 |
+   | -        | Subtracts last 2 items in stack                                                  |
+   | *        | Multiplies last 2 items in stack                                                 |
+   | \slash{} | Divides last 2 items in stack                                                    |
+   | s        | Sorts all items in stack (calls clojure.core/sort)                               |
+   | S        | Sorts all items in stack after converting them to numbers                        |
+   | i        | Increments last item in stack                                                    |
+   | d        | Decrements last item in stack                                                    |
+   | I        | Increments all items in stack                                                    |
+   | D        | Decrements all items in stack                                                    |
+   | ~        | Splits the last item in stack by spaces, and adds it to the stack                |
+   | >        | Moves item at index to top of the stack, the index is the last item of the stack |
